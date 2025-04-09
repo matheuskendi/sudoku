@@ -8,7 +8,8 @@ import java.util.Map;
 import static br.com.dio.Service.EventEnum.CLEAR_SPACE;
 
 public class NotifierService {
-    private Map<EventEnum, List<EventListener>> listeners = new HashMap<>(){{
+
+    private final Map<EventEnum, List<EventListener>> listeners = new HashMap<>(){{
         put(CLEAR_SPACE, new ArrayList<>());
     }};
 

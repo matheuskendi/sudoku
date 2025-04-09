@@ -39,23 +39,19 @@ public class BoardService {
 
 
 
-    private List<List<Space>> initBoard(Map<String,String> gameConfig) {
-        // Cria a estrutura de espaços do tabuleiro, representando cada célula.
-            List<List<Space>> spaces = new ArrayList<>();
-            for(int i = 0; i < BOARD_LIMIT; i++){
-                spaces.add(new ArrayList<>());
-                for (int j = 0; j < BOARD_LIMIT; j++){
-                    // Obtém a configuração da posição no mapa, como valores esperados e fixados.
-                    var positionConfig = gameConfig.get("%s,%s".formatted(i,j));
-                    // Divide a configuração e mapeia os valores.
-                    var expected = Integer.parseInt(positionConfig.split(",")[0]);
-                    var fixed = Boolean.parseBoolean(positionConfig.split(",")[1]);
-                    // Cria uma nova instância de Space e adiciona à estrutura.
-                    var currentSpace = new Space(expected, fixed);
-                    spaces.get(i).add(currentSpace);
-                }
+    private List<List<Space>> initBoard(final Map<String, String> gameConfig) {
+        List<List<Space>> spaces = new ArrayList<>();
+        for (int i = 0; i < BOARD_LIMIT; i++) {
+            spaces.add(new ArrayList<>());
+            for (int j = 0; j < BOARD_LIMIT; j++) {
+                var positionConfig = gameConfig.get("%s,%s".formatted(i, j));
+                var expected = Integer.parseInt(positionConfig.split(",")[0]);
+                var fixed = Boolean.parseBoolean(positionConfig.split(",")[1]);
+                var currentSpace = new Space(expected, fixed);
+                spaces.get(i).add(currentSpace);
             }
-            return spaces;
+        }
 
+        return spaces;
     }
 }
